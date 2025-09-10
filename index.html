@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client-Side Security Demo</title>
+    <style>
+        body { font-family: sans-serif; max-width: 600px; margin: 50px auto; }
+        .panel { padding: 20px; border: 1px solid #ccc; margin: 20px 0; }
+        #adminPanel { display: none; background-color: #ffe6e6; } /* Hidden by default */
+        .secret { color: red; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the Demo</h1>
+
+    <!-- Login Panel -->
+    <div class="panel" id="loginPanel">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <input type="password" id="passwordInput" placeholder="Enter Admin Password">
+            <button type="submit">Submit</button>
+        </form>
+        <p id="loginMessage"></p>
+    </div>
+
+    <!-- Admin Panel (Hidden until "unlocked") -->
+    <div class="panel" id="adminPanel">
+        <h2>🔐 Admin Control Panel</h2>
+        <p>This is <span class="secret">super secret admin data</span>! Users should never see this.</p>
+        <p><strong>Client-Side Check Result:</strong> <span id="clientResult"></span></p>
+        <p><strong>Server-Side Check Result:</strong> <span id="serverResult">Not checked yet.</span></p>
+        <br>
+        <button onclick="fetchServerSecret()">Ask the Server for the *Real* Secret</button>
+    </div>
+
+    <hr>
+    <h3>Your Mission (should you choose to accept it):</h3>
+    <ol>
+        <li>Log in with the correct password. Everything will work.</li>
+        <li>Now, bypass the login without the password. <strong>Hint:</strong> Open your browser's Developer Tools (F12).</li>
+        <li>See how you can see the client-side "secret"?</li>
+        <li>Click the button to ask the server for the secret. Notice the server will <em>never</em> give it to you without the correct password, proving server-side validation is crucial.</li>
+    </ol>
+
+    <!-- Link to our client-side JavaScript -->
+    <script src="client-side.js"></script>
+</body>
+</html>
